@@ -28,7 +28,17 @@ pub fn create_packet(dest: u16, src: u16) -> Vec<u8> {
 }
 
 /// Unwraps the UDP packet and return the NTP timestamp
-pub fn unpack(data: Vec<u8>) -> String {
-    // ignore checksum, length, ..., just delegate payload to NTP
-    get_timestamp(&data[8..])
+pub fn unpack(data: &[u8], src: u16, dest: u16) -> Option<String> {
+    // check port
+    let src = src.to_be_bytes();
+    let dest = dest.to_be_bytes();
+
+    if src == data[0..2] && dest == data[2..4] {
+        // ignore checksum, length, ..., just delegate payload to NTP
+        Some(get_timestamp(&data[8..]))
+    }else{
+        None
+    }
+
+    
 }
