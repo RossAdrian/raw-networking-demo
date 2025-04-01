@@ -46,11 +46,11 @@ fn main() {
 
     // gateway IP
     let gateway_ip = {
-        let ip: Ipv4Addr = std::env::args().next().expect("Expected gateway IP").parse().expect("Expected IPv4 address");
+        let ip: Ipv4Addr = std::env::args().nth(2).expect("Expected gateway IP").parse().expect("Expected IPv4 address");
         ip
     };
 
-    let port = std::env::args().next().expect("Expected binding port");
+    let port = std::env::args().nth(3).expect("Expected binding port");
     let port: u16 = port.parse().expect("Cannot parse port");
 
     // Get the interface we search
@@ -140,7 +140,7 @@ fn main() {
     let timestamp = {
         let mut res;
 
-        let dest: SocketAddr = format!("time.google.com:{}", 123).parse().expect("Could not resolve time.google.com");
+        let dest: SocketAddr = format!("216.239.35.12:{}", 123).parse().expect("Could not resolve time.google.com");
         let src = SocketAddr::new(IpAddr::V4(this_ip), port);
 
         let packet = create_ethernet_packet(&this_mac.octets(), &gateway_mac, src, dest);
@@ -156,7 +156,7 @@ fn main() {
             match rx.next() {
                 Ok(frame) => {
                     // try to parse bottom-up the NTP packet to get timestamp
-                    res = unwrap_ethernet_packet(frame, &this_mac.octets(), &gateway_mac, src, dest);
+                    res = unwrap_ethernet_packet(frame, &this_mac.octets(), &gateway_mac, dest, src);
                 },
                 Err(e) => {
                     panic!("Error occured: {}", e)

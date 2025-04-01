@@ -18,7 +18,7 @@ pub fn create_packet(dest: u16, src: u16) -> Vec<u8> {
     add_request_payload(&mut data);
 
     // set length
-    let length = u16::try_from(data.len() - 8).expect("Payload to big");
+    let length = u16::try_from(data.len()).expect("Payload to big");
     let bytes = length.to_be_bytes();
     data[4] = bytes[0];
     data[5] = bytes[1];
@@ -38,7 +38,5 @@ pub fn unpack(data: &[u8], src: u16, dest: u16) -> Option<String> {
         Some(get_timestamp(&data[8..]))
     }else{
         None
-    }
-
-    
+    }    
 }

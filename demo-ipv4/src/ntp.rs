@@ -20,8 +20,10 @@ pub fn get_timestamp(payload: &[u8]) -> String {
 /// Gets the data to send, and adds the NTP request payload
 pub fn add_request_payload(data: &mut Vec<u8>) {
     // Leap Indicator = 0, Version = 3, Mode = Client
-    data.push(0x1B);
+    data.push(0xe3);
 
     // push 47 0x00 bytes
-    data.extend_from_slice(&[0x00u8; 47]);
+    for _ in 0..47 {
+        data.push(0x00);
+    }
 }

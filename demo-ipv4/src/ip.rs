@@ -101,10 +101,11 @@ pub fn unpack(frame: &[u8], src: SocketAddr, dest: SocketAddr) -> Option<String>
     header[10] = 0;
     header[1] = 0;
 
+    /* Ignore for now checksum
     let checksum = compute_checksum(header.as_slice()).to_be_bytes();
     if checksum != frame[10..=11] {
-        panic!("Received corrupted IP packet");
-    }
+        panic!("Received corrupted IP packet, {:?} != {:?}", checksum, &frame[10..=11]);
+    }*/
 
     // contine checking
 

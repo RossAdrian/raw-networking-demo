@@ -27,7 +27,7 @@ pub fn create_arp(mac: [u8; 6], curr_ip: [u8; 4], lookup_ip: [u8; 4]) -> Vec<u8>
     frame.push(0x01);
 
     // protocol address space: IPv4
-    frame.push(0x80);
+    frame.push(0x08);
     frame.push(0x00);
 
     // mac length
@@ -77,7 +77,7 @@ pub fn unwrap_arp(frame: &[u8], mac: [u8; 6], curr_ip: [u8; 4], lookup_ip: [u8; 
     }
 
     // Check Ethernet/IPv4
-    if frame[14..18] != [0x00, 0x01, 0x80, 0x00] {
+    if frame[14..18] != [0x00, 0x01, 0x08, 0x00] {
         return None;
     }
 
