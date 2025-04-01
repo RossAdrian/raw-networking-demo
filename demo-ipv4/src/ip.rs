@@ -1,7 +1,5 @@
 // IP layer
-use std::net::{IpAddr, Ipv4Addr, SocketAddr};
-
-use pnet::packet::icmp::checksum;
+use std::net::{IpAddr, SocketAddr};
 
 use crate::udp::create_packet;
 
@@ -11,7 +9,7 @@ pub fn create_ip_packet(src: SocketAddr, dest: SocketAddr) -> Vec<u8> {
 
     // calculate header
 
-    // first byte (0x4)
+    // first byte (0x45)
     data.push( (4u8 << 4) | 5 );
     data.push(0);
 
