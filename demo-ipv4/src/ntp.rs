@@ -1,3 +1,4 @@
+// NTP (application layer)
 use chrono::DateTime;
 
 /// Gets the NTP payload and returns the timestamp as string
