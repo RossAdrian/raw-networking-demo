@@ -4,3 +4,4 @@ members = ["demo-ipv4"]
 
 [workspace.dependencies]
 pnet = "0.34.0"
+chrono = "0.4.40"
