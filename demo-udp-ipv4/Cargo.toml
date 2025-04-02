@@ -1,5 +1,5 @@
 [package]
-name = "demo-ipv4"
+name = "demo-udp-ipv4"
 version = "0.1.0"
 edition = "2024"
 

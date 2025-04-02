@@ -1,6 +1,6 @@
 [workspace]
 resolver = "2"
-members = ["demo-ipv4"]
+members = ["demo-udp-ipv4"]
 
 [workspace.dependencies]
 pnet = "0.34.0"
