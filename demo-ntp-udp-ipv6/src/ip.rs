@@ -40,6 +40,11 @@ pub fn unpack(frame: &[u8], src: SocketAddrV6, dest: SocketAddrV6) -> Option<Str
         return None;
     }
 
+    // Check IP protocol number
+    if frame[6] != 17 {
+        return None;
+    }
+
     // Now check on the next layer
     crate::udp::unpack(&frame[40..], src, dest)
 }
