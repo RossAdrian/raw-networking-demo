@@ -48,3 +48,30 @@ pub fn unpack(frame: &[u8], src: SocketAddrV6, dest: SocketAddrV6) -> Option<Str
     // Now check on the next layer
     crate::udp::unpack(&frame[40..], src, dest)
 }
+
+/// Check if is ICMPv6 neighbor advertisement from the router
+/// 
+/// Returns true, if this is a router, and the link layer should use the MAC for futher communication.
+/// 
+pub fn icmpv6_check_neighbor(frame: &[u8]) -> bool {
+    // Check if ICMPv6
+    if frame[6] != 58 {
+        return false;
+    }
+
+    // Check if router advertisement
+    if frame[40] == 134 {
+        return true;
+
+    // if is not neighbor advertisement, return false
+    }else if frame[40] != 136 {
+        return false;
+    }
+
+    // if is neighbor advertisement, check if router bit set
+    if frame[44] & 0x80 != 0 {
+        true
+    }else{
+        false
+    }
+}
