@@ -180,7 +180,7 @@ fn main() {
         res.unwrap()
     };
 
-    println!("Current time: {}", timestamp);
+    println!("Current time (UTC): {}", timestamp);
 
 }
 
