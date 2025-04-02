@@ -50,6 +50,10 @@ cargo run --release <crate> -- <args>
 
 For commandline arguments, reffer to the corresponding crate README, or run with `--help` to get the help message for this crate.
 
+### Debugging
+
+Best way to debug, or simply observe the packet flow, is observing the packet flow in [Wireshark](https://www.wireshark.org/).
+
 ## Intended Purpose
 
 The primary goal of this project is to provide:
