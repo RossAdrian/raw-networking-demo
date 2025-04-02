@@ -82,6 +82,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "demo-ntp-udp-ipv6"
+version = "0.1.0"
+dependencies = [
+ "chrono",
+ "pnet",
+]
+
+[[package]]
 name = "glob"
 version = "0.3.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
