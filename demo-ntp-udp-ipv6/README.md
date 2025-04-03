@@ -89,3 +89,11 @@ The program demonstrates how networking protocols are layered by implementing a 
    - Displays received timestamp when valid response found
 
 This implementation shows how each networking layer adds its own headers and addressing information, demonstrating the encapsulation process that normally happens within the operating system's networking stack.
+
+## Relevant Sources
+
+- [RFC 4861, Section 4](https://datatracker.ietf.org/doc/html/rfc4861#section-4): Router Solicitation/Advertisement format
+- [RFC 2460](https://datatracker.ietf.org/doc/html/rfc2460): Internet Protocol, Version 6 (IPv6) Specification
+- [RFC 768](https://datatracker.ietf.org/doc/html/rfc768): User Datagram Protocol (UDP)
+- [RFC 5905](https://datatracker.ietf.org/doc/html/rfc5905): Network Time Protocol Version 4: Protocol and Algorithms Specification
+- [Wikipedia](https://en.wikipedia.org/wiki/EtherType#Overview): Overview over IEEE 802.3 and EtherType
