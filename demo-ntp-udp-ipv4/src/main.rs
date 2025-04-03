@@ -193,7 +193,7 @@ fn help_message(code: i32) -> ! {
     println!("  <gateway>     The gateway IP address. The IPv4 address of your internet router.");
     println!("                Normally something like 192.168.x.1 or similar.");
     println!("  <UDP port>    Port to bind the UDP socket on (or better said steel the port).\n");
-    println!("Bug reports issue at https://github.com/RossAdrian/raw-udp-demo/.");
+    println!("Bug reports issue at https://github.com/RossAdrian/raw-networking-demo/.");
 
 
     exit(code)
