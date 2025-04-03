@@ -1,6 +1,6 @@
 use std::{net::{IpAddr, SocketAddrV6}, process::exit, time::Instant};
 
-use link::create_ethernet_packet;
+use link::{create_eth_router_solicitation, create_ethernet_packet};
 use pnet::datalink::{self, Channel};
 
 mod ntp; // Application layer
@@ -92,6 +92,11 @@ fn main() {
     // first listen for router advertisement
     let gateway_mac = {
         let mut res;
+
+        let packet = create_eth_router_solicitation(&this_mac.octets(), &this_ip);
+
+        // send icmp packet
+        tx.send_to(&packet, None);
 
         // current time
         let t_prev = Instant::now();

@@ -1,5 +1,5 @@
 // Link layer (ethernet)
-use std::net::SocketAddrV6;
+use std::net::{Ipv6Addr, SocketAddrV6};
 
 use crate::ip::icmpv6_check_neighbor;
 
@@ -62,4 +62,24 @@ pub fn unpack_icmp(frame: &[u8]) -> Option<[u8; 6]> {
     }else{
         None
     }
+}
+
+/// Create ICMPv6 router solicitation packet.
+/// 
+pub fn create_eth_router_solicitation(our_mac: &[u8; 6], ip: &Ipv6Addr) -> Vec<u8> {
+    // Create ethernet frame
+    let mut frame = Vec::new();
+    
+    // push dest/src MAC
+    frame.extend_from_slice(&[0x33, 0x33, 0x00, 0x00, 0x00, 0x02]);
+    frame.extend_from_slice(our_mac);
+
+    // push Ethertype 0x86DD (IPv6)
+    frame.push(0x86);
+    frame.push(0xDD);
+
+    // Create ip layer ICMPv6 payload
+    crate::ip::icmpv6_create_router_solicitation(&mut frame, ip);
+
+    frame
 }
