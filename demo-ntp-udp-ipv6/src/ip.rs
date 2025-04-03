@@ -25,7 +25,7 @@ pub fn create_ip_packet(data: &mut Vec<u8>, src: SocketAddrV6, dest: SocketAddrV
     let len = u16::try_from(data[{plen_idx+36}..].len()).expect("IPv6 payload too long.").to_be_bytes();
 
     data[plen_idx] = len[0];
-    data[plen_idx] = len[1];
+    data[plen_idx+1] = len[1];
     // Ready
 }
 

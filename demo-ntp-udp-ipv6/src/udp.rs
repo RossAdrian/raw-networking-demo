@@ -20,7 +20,7 @@ pub fn create_packet(data: &mut Vec<u8>, dest: SocketAddrV6, src: SocketAddrV6) 
     add_request_payload(data);
 
     // set length
-    let length = u16::try_from(data.len()).expect("Payload to big");
+    let length = u16::try_from(data[curr_idx..].len()).expect("Payload to big");
     let bytes = length.to_be_bytes();
     data[curr_idx + 4] = bytes[0];
     data[curr_idx + 5] = bytes[1];
